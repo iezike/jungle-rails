@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   get '/about', to: 'about#index'
   get '/signup', to: 'users#new'
+  get 'login', to: 'sessions#new'
+
   post '/users', to: 'users#create'
+  post '/login' to: 'sessions#create'
+
+  get '/logout' => 'sessions#destroy'
 
   resource :cart, only: [:show] do
     post   :add_item
