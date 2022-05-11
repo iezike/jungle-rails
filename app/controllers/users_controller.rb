@@ -3,12 +3,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
+    val = User.find_by email: user_params[:email]
+    @user = User.new(user_params)
+    if !val && @user.save
+      session[:user_id] = @user.id
       redirect_to '/'
     else 
-      redirect_to 'signup'
+      redirect_to '/login', notice: "invalid account"
     end
   end
 
@@ -16,4 +17,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end 
+  
 end
