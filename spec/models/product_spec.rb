@@ -34,7 +34,12 @@ RSpec.describe Product, type: :model do
       expect(@product.errors.full_messages).to include("Category can't be blank")
     end
 
-
+    it 'should succesfully save a product' do
+      @category = Category.new(name: "Shrubb")
+      @product = Product.new(name: "Harbiscus", price: 800, quantity: 7, category: @category)
+      
+      expect(@product).to be_valid
+    end
   end
 end
 
