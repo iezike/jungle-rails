@@ -3,13 +3,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    val = User.find_by email: user_params[:email]
     @user = User.new(user_params)
-    if !val && @user.save
+    if @user.save
       session[:user_id] = @user.id
       redirect_to '/'
     else 
-      redirect_to '/login', notice: "invalid account"
+      redirect_to '/login'
     end
   end
 
