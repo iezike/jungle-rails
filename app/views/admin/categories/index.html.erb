@@ -13,14 +13,16 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+         <th></th>
           <th>Category</th>
           <th> Date Created </th>
           <th> Last Modified </th> 
         </tr>
       </thead>
       <tbody>
-        <% @categories.each do |category| %>
+        <% @categories.reverse.each do |category| %>
          <tr>
+         <td> <%=category.id%> </td>
             <td> <%=category.name%> </td>
             <td> <%=category.created_at%> </td>
             <td> <%=category.updated_at%> </td>
